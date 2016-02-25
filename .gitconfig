@@ -1,0 +1,22 @@
+[user]
+  name  = Jhonny Moreira
+  email = xDeniedAccess@gmail.com
+
+[core]
+  excludesfile = ~/.gitignore
+	editor = subl -w
+
+[alias]
+  ad = add -i
+  br = branch
+  ck = checkout
+  cm = commit
+  df = diff
+  ft = fetch
+  lg = log --graph --all --decorate
+  mg = merge
+  pl = pull
+  ps = push
+  rb = rebase
+  rs = reset
+  st = status

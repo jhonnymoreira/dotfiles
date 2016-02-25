@@ -1,0 +1,8 @@
+alias bicos="~/development/bicos"
+alias dev="~/development/"
+alias leafcafe="~/development/leafcafe/"
+alias ll="ls -lah --group-directories-first"
+alias playground="~/development/playground/"
+alias projects="~/development/projects/"
+alias refresh="source ~/.zshrc"
+alias zshconfig="subl ~/.zshrc"
