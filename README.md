@@ -4,7 +4,7 @@ From system with love. :computer::heart:
 
 ## Create your own
 
-1. Clone the your dotfiles folder  
+1. Create your dotfiles folder  
   ```sh
   mkdir ~/dotfiles
   ```
