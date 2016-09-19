@@ -1,0 +1,10 @@
+alias ll="ls -lah --group-directories-first"
+alias refresh="source ~/.zshrc"
+
+alias zshconfig="subl ~/.zshrc"
+
+alias dev="~/development/"
+alias leafcafe="~/development/leafcafe/"
+alias open-source="~/development/open-source"
+alias playground="~/development/playground/"
+alias projects="~/development/projects/"
