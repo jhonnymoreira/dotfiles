@@ -1,4 +1,4 @@
-alias ll="ls -lah --group-directories-first"
+alias ll="LC_COLLATE=C ls -lah --group-directories-first"
 alias refresh="source ~/.zshrc"
 
 alias zshconfig="subl ~/.zshrc"
