@@ -1,6 +1,6 @@
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="geometry"
+ZSH_THEME="gitster"
 export LANG=en_US.UTF-8
 HIST_STAMPS="dd.mm.yyyy"
 export UPDATE_ZSH_DAYS=1
@@ -34,3 +34,6 @@ export EDITOR="subl"
 
 # Load aliases
 source $HOME/.zsh_aliases
+export PATH="$HOME/.linuxbrew/bin:$PATH"
+export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
+export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
