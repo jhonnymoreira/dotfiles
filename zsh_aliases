@@ -8,3 +8,7 @@ alias leafcafe="~/development/leafcafe/"
 alias open-source="~/development/open-source"
 alias playground="~/development/playground/"
 alias projects="~/development/projects/"
+
+alias pbcopy="xclip -selection clipboard -i"
+alias pbpaste="xclip -selection clipboard -o"
+
