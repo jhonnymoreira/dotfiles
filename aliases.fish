@@ -4,9 +4,9 @@ alias pbcopy="xclip -selection clipboard -i"
 alias pbpaste="xclip -selection clipboard -o"
 
 # Shortcuts 
-alias dev="$HOME/development"
-alias oss="$HOME/development/open-source"
-alias playground="$HOME/development/playground"
+alias dev="cd $HOME/development"
+alias oss="cd $HOME/development/open-source"
+alias playground="cd $HOME/development/playground"
 
 # Edit config shortcuts
 alias fishconfig="$EDITOR $DOTFILES_PATH/conf.fish"
