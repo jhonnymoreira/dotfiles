@@ -2,7 +2,3 @@
 /bower_components/
 .DS_Store
 .localized
-.ruby-version
-TODO.md
-*.swp
-/bin/

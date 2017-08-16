@@ -1,9 +1,9 @@
 [user]
   name  = Jhonny Moreira
-  email = xDeniedAccess@gmail.com
+  email = me.jhonnymoreira@gmail.com
 
 [core]
-  excludesfile = ~/.gitignore
+  excludesfile = $HOME/.gitignore
 	editor = vim
 
 [alias]
