@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+prune_gone_branches() {
+  git checkout $1
+  git fetch -p
+  git br -vv |
+    awk '/gone\]/{print $1}' |
+    xargs git br -D
+}
+
+prune_gone_branches $1

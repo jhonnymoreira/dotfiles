@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+prune_unsynced_branches() {
+  git checkout $1
+  git fetch -p
+  git br -vv |
+    awk '!/\[origin\//{print $1}' |
+    xargs git br -D
+}
+
+prune_unsynced_branches $1
