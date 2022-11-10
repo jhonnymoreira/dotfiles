@@ -4,3 +4,6 @@ export PATH="$ANDROID_SDK_HOME/emulator:$PATH"
 
 JETBRAINS_TOOLBOX_HOME="$HOME/Library/Application Support/JetBrains/Toolbox"
 export PATH="$JETBRAINS_TOOLBOX_SCRIPTS/scripts:$PATH"
+
+export GEM_HOME=$HOME/.gem
+export PATH=$GEM_HOME/bin:$PATH
