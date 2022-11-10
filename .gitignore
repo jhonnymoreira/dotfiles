@@ -1,0 +1,7 @@
+aws/*
+vpn/*
+
+.DS_Store
+
+!aws/.gitkeep
+!vpn/.gitkeep
