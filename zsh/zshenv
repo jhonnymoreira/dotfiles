@@ -7,3 +7,5 @@ export PATH="$JETBRAINS_TOOLBOX_SCRIPTS/scripts:$PATH"
 
 export GEM_HOME=$HOME/.gem
 export PATH=$GEM_HOME/bin:$PATH
+
+export SAM_CLI_TELEMETRY=0
