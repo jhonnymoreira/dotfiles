@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+prune_branches() {
+  local pattern="$1"
+  local branches_to_delete=$(git branch -vv | awk "$pattern")
+
+  if [ -n "$branches_to_delete" ]; then
+    echo "$branches_to_delete" | xargs git branch -D
+  fi
+}
+
+git fetch --prune &&
+  # Gone
+  prune_branches '/gone\]/{print $1}' &&
+  # Branches not present in origin
+  prune_branches '!/\[origin\//{print $1}'

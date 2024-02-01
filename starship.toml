@@ -1,5 +1,19 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 directory.truncate_to_repo = false
-add_newline = false
+add_newline = true
 cmd_duration = { disabled = true }
+
+[package]
+format = '[$symbol($version)]($style)'
+display_private = true
+
+[nodejs]
+format = ' [$symbol($version)]($style)'
+
+[aws]
+symbol = " ☁️ "
+format = '[$symbol($profile) (\($region\))]($style)'
+
+[git_branch]
+format = '[$symbol$branch]($style) '

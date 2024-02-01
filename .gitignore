@@ -1,7 +1,9 @@
 aws/*
-vpn/*
+vpn/**
+node_modules/**
 
 .DS_Store
+zsh/bootstrap/aws.sh
 
 !aws/.gitkeep
 !vpn/.gitkeep

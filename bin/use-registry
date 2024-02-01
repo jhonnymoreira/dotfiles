@@ -1,0 +1,28 @@
+#!/usr/bin/env node
+const fs = require('node:fs');
+const path = require('node:path');
+const process = require('node:process');
+
+const SUPPORTED_REGISTRIES = ['npm', 'codeartifact'];
+
+const TEMPLATE = {
+  npm: '',
+  codeartifact: [
+    'registry=<codeartifact-url>',
+    '//<codeartifact-url>/:_authToken=${CODEARTIFACT_AUTH_TOKEN}',
+    '\n',
+  ].join('\n'),
+};
+
+const registry = process.argv[2];
+const hasSupportedRegistry = SUPPORTED_REGISTRIES.includes(registry);
+
+if (!hasSupportedRegistry) {
+  console.log('Usage: use-registry [npm|codeartifact]');
+  process.exit(1);
+}
+
+const template = TEMPLATE[registry];
+const configurationPath = path.resolve(process.env.HOME, '.npmrc');
+
+fs.writeFileSync(configurationPath, template);

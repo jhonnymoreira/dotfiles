@@ -1,10 +1,28 @@
 #!/usr/bin/env bash
 
+USAGE=$(
+  cat <<EOF
+Usage:
+  killport <port>
+
+Example:
+  killport :3000
+EOF
+)
+
 killport() {
-   lsof -i $1 | \
-    awk 'NR!=1 {print $2}' | \
-    uniq | \
-    xargs kill -9
+  if [ -z "$1" ]; then
+    echo "$USAGE"
+    return 1
+  fi
+
+  local process_id=$(lsof -i $1 | awk 'NR!=1 {print $2}' | uniq)
+  if [ -z $process_id ]; then
+    echo "No process found on port $1"
+    return 1
+  fi
+
+  return 0
 }
 
 killport $1

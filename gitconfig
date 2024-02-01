@@ -1,20 +1,29 @@
 [alias]
-  ad = add -i
-  br = branch
-  ck = checkout
-  cm = commit
-  df = diff
-  lg = log --graph --all --decorate
-  ps = push
-  st = status
+ad = add -i
+br = branch
+ck = checkout
+cm = commit -v
+df = diff
+dfc = diff --cached
+lg = log --graph --all --decorate
+ps = push
+st = status
 
 [core]
-  editor = vim
-  excludesfile = $HOME/.gitignore
+editor = vim
+excludesfile = $HOME/.gitignore
 
 [init]
-  defaultBranch = main
+defaultBranch = main
 
 [user]
-  name = Jhonny Moreira
-  email = jhonnymoreira@protonmail.com
+name = Jhonny Moreira
+email = jhonnymoreira@protonmail.com
+
+[credential "https://github.com"]
+helper =
+helper = !/usr/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+helper =
+helper = !/usr/bin/gh auth git-credential

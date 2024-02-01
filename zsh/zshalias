@@ -1,5 +1,17 @@
+# Commands
 alias batdiff='git diff --name-only --relative --diff-filter=d | xargs bat --diff'
-alias cat='bat --show-all'
+alias ll='exa -laFH --group-directories-first'
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
+# File Access
+alias edit-dotfiles='code $HOME/dotfiles'
+
+# Paths
 alias dev='cd $HOME/development'
-alias ll='exa -laF --group-directories-first'
+alias lab='cd $HOME/development/lab'
+alias dotfiles='cd $HOME/dotfiles'
+
+# Refreshers
+alias refresh-aws-token='source $DOTFILES_ZSH_PATH/bootstrap/aws.sh'
 alias refresh-zsh='source $HOME/.zshrc'

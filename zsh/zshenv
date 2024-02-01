@@ -1,11 +1,18 @@
-export ANDROID_SDK_HOME="$HOME/Library/Android/sdk"
-export PATH="$ANDROID_SDK_HOME/platform-tools:$PATH"
-export PATH="$ANDROID_SDK_HOME/emulator:$PATH"
+# export ANDROID_SDK_HOME="$HOME/Library/Android/sdk"
+# export PATH="$ANDROID_SDK_HOME/platform-tools:$PATH"
+# export PATH="$ANDROID_SDK_HOME/emulator:$PATH"
 
-JETBRAINS_TOOLBOX_HOME="$HOME/Library/Application Support/JetBrains/Toolbox"
-export PATH="$JETBRAINS_TOOLBOX_SCRIPTS/scripts:$PATH"
+# JETBRAINS_TOOLBOX_HOME="$HOME/Library/Application Support/JetBrains/Toolbox"
+# export PATH="$JETBRAINS_TOOLBOX_SCRIPTS/scripts:$PATH"
+
+export DOTFILES_PATH="$HOME/dotfiles"
 
 export GEM_HOME=$HOME/.gem
 export PATH=$GEM_HOME/bin:$PATH
+
+export NVM_DIR="$HOME/.nvm"
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 
 export SAM_CLI_TELEMETRY=0

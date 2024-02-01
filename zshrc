@@ -1,28 +1,21 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 plugins=(
-  brew
   docker
   docker-compose
   git
   httpie
-  macos
-  npm
-  nvm
   rust
-  yarn
-  zsh-nvm
 )
 
 source $ZSH/oh-my-zsh.sh
 
-export DOTFILES_PATH="$HOME/dotfiles"
+export DOTFILES_ZSH_PATH="$HOME/dotfiles/zsh"
 
-. $DOTFILES_PATH/zsh/bootstrap.sh
+source $DOTFILES_ZSH_PATH/zshenv
+source $DOTFILES_ZSH_PATH/zshalias
 
-source $DOTFILES_PATH/zsh/zshenv
-source $DOTFILES_PATH/zsh/zshalias
+. $DOTFILES_ZSH_PATH/bootstrap.sh
+. $DOTFILES_ZSH_PATH/functions.sh
+
+precmd_functions+=(keep_current_path)
