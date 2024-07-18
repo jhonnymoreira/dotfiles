@@ -3,6 +3,7 @@ ad = add -i
 br = branch
 ck = checkout
 cm = commit -v
+cma = commit --amend
 df = diff
 dfc = diff --cached
 lg = log --graph --all --decorate
@@ -21,9 +22,7 @@ name = Jhonny Moreira
 email = jhonnymoreira@protonmail.com
 
 [credential "https://github.com"]
-helper =
 helper = !/usr/bin/gh auth git-credential
 
 [credential "https://gist.github.com"]
-helper =
 helper = !/usr/bin/gh auth git-credential

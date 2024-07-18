@@ -1,28 +1,41 @@
 #!/usr/bin/env node
-const fs = require('node:fs');
-const path = require('node:path');
-const process = require('node:process');
+import fs from 'node:fs';
+import path from 'node:path';
+import process from 'node:process';
 
-const SUPPORTED_REGISTRIES = ['npm', 'codeartifact'];
+const USAGE =
+  'Usage: use-registry [codeartifact|github|npm] <registry-url>';
 
-const TEMPLATE = {
-  npm: '',
-  codeartifact: [
-    'registry=<codeartifact-url>',
-    '//<codeartifact-url>/:_authToken=${CODEARTIFACT_AUTH_TOKEN}',
-    '\n',
-  ].join('\n'),
+const SUPPORTED_REGISTRIES = ['codeartifact', 'github', 'npm'];
+
+const REGISTRY_URL = {
+  github: 'npm.pkg.github.com',
+  npm: 'registry.npmjs.org',
 };
 
-const registry = process.argv[2];
+const TEMPLATE =
+  '//<registry-url>/:_authToken=${<registry>_PERSONAL_ACCESS_TOKEN}';
+
+const [registry, registryUrl] = process.argv.slice(2, 4);
 const hasSupportedRegistry = SUPPORTED_REGISTRIES.includes(registry);
 
 if (!hasSupportedRegistry) {
-  console.log('Usage: use-registry [npm|codeartifact]');
+  console.log(USAGE);
   process.exit(1);
 }
 
-const template = TEMPLATE[registry];
+if (registry === 'codeartifact' && !registryUrl) {
+  console.log(
+    'You need to provide a <registry-url> when using CodeArtifact',
+  );
+  console.log(USAGE);
+  process.exit(1);
+}
+
+const template = TEMPLATE.replace(
+  '<registry-url>',
+  registryUrl ?? REGISTRY_URL[registry],
+).replace('<registry>', registry.slice().toUpperCase());
 const configurationPath = path.resolve(process.env.HOME, '.npmrc');
 
-fs.writeFileSync(configurationPath, template);
+fs.writeFileSync(configurationPath, `${template}\n`);

@@ -4,6 +4,7 @@ node_modules/**
 
 .DS_Store
 zsh/bootstrap/aws.sh
+zsh/bootstrap/personal-access-tokens.sh
 
 !aws/.gitkeep
 !vpn/.gitkeep

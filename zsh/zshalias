@@ -1,6 +1,7 @@
 # Commands
+alias bcat='batcat'
 alias batdiff='git diff --name-only --relative --diff-filter=d | xargs bat --diff'
-alias ll='exa -laFH --group-directories-first'
+alias ll='exa -laFH --group-directories-first --icons'
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 

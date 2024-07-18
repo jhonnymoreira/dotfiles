@@ -11,9 +11,12 @@ display_private = true
 [nodejs]
 format = ' [$symbol($version)]($style)'
 
+[python]
+format = ' [$symbol($version)]($style)'
+
 [aws]
-symbol = " ☁️ "
-format = '[$symbol($profile) (\($region\))]($style)'
+symbol = "  "
+format = ' [$symbol($profile) (\($region\))]($style)'
 
 [git_branch]
 format = '[$symbol$branch]($style) '

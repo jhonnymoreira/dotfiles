@@ -5,14 +5,16 @@
 # JETBRAINS_TOOLBOX_HOME="$HOME/Library/Application Support/JetBrains/Toolbox"
 # export PATH="$JETBRAINS_TOOLBOX_SCRIPTS/scripts:$PATH"
 
-export DOTFILES_PATH="$HOME/dotfiles"
-
-export GEM_HOME=$HOME/.gem
-export PATH=$GEM_HOME/bin:$PATH
-
-export NVM_DIR="$HOME/.nvm"
-
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-
 export SAM_CLI_TELEMETRY=0
+
+export AMPLIFY_PATH="$HOME/.amplify"
+export DOTFILES_PATH="$HOME/dotfiles"
+export GEM_HOME="$HOME/.gem"
+export LANDO_PATH="$HOME/.lando"
+export NVM_DIR="$HOME/.nvm"
+export PYENV_ROOT="$HOME/.pyenv"
+
+export PATH="$AMPLIFY_PATH/bin:$PATH"
+export PATH="$GEM_HOME/bin:$PATH"
+export PATH="$LANDO_PATH/bin:$PATH"
+export PATH="$PYENV_ROOT/bin:$PATH"
