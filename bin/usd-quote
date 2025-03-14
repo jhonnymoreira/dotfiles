@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+
+/**
+ * @typedef {Object} UsdQuote
+ * @property {Object} USDBRL
+ * @property {string} USDBRL.code
+ * @property {string} USDBRL.codein
+ * @property {string} USDBRL.name
+ * @property {string} USDBRL.high
+ * @property {string} USDBRL.low
+ * @property {string} USDBRL.varBid
+ * @property {string} USDBRL.pctChange
+ * @property {string} USDBRL.bid
+ * @property {string} USDBRL.ask
+ * @property {string} USDBRL.timestamp
+ * @property {string} USDBRL.create_date
+ */
+
+/**
+ * @type {UsdQuote}
+ */
+const { USDBRL: quote } = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL')
+  .then(response => response.json());
+
+const today = quote.ask;
+const toConvert = process.argv[2] ?? 1;
+const converted = Number(toConvert) * Number(today);
+
+const currencyFormatter = new Intl.NumberFormat('pt-BR', {
+  style: 'currency',
+  currency: 'BRL',
+});
+
+console.log('Hoje:      ', currencyFormatter.format(today));
+console.log('Convertido:', currencyFormatter.format(converted));

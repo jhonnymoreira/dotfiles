@@ -20,3 +20,26 @@ format = ' [$symbol($profile) (\($region\))]($style)'
 
 [git_branch]
 format = '[$symbol$branch]($style) '
+
+[php]
+format = ' [$symbol($version)]($style)'
+
+[custom.default_branch]
+# First try symbolic-ref, if it fails try remote show origin
+symbol = " "
+command = """
+if branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null); then
+    echo "${branch#refs/remotes/origin/}"
+else
+    git remote show origin 2>/dev/null | grep "HEAD branch" | cut -d ":" -f 2 | tr -d "[:space:]"
+fi
+"""
+when = "git rev-parse --git-dir 2>/dev/null"
+format = "\\([$symbol($output)]($style)\\) "
+style = "bold green"
+
+[custom.time]
+command = "date +%H:%M:%S"
+when = "true"
+format = "[🕒 $output ]($style)"
+style = "bold white"

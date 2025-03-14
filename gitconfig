@@ -13,9 +13,16 @@ st = status
 [core]
 editor = vim
 excludesfile = $HOME/.gitignore
+preloadindex = true
 
 [init]
 defaultBranch = main
+
+[pull]
+rebase = false
+
+[push]
+autoSetupRemote = true
 
 [user]
 name = Jhonny Moreira
