@@ -6,6 +6,7 @@
 # export PATH="$JETBRAINS_TOOLBOX_SCRIPTS/scripts:$PATH"
 export EDITOR="nvim"
 
+export COLORTERM=truecolor
 export DISABLE_AUTO_UPDATE=1
 export SAM_CLI_TELEMETRY=0
 
@@ -16,11 +17,13 @@ export GEM_HOME="$HOME/.gem"
 export LANDO_PATH="$HOME/.lando"
 export NVM_DIR="$HOME/.nvm"
 export PYENV_ROOT="$HOME/.pyenv"
+export LOCAL_ROOT="$HOME/.local"
 
 export PATH="$AMPLIFY_PATH/bin:$PATH"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$GEM_HOME/bin:$PATH"
 export PATH="$LANDO_PATH/bin:$PATH"
 export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="$LOCAL_ROOT/bin:$PATH"
 
 unset WAYLAND_DISPLAY
