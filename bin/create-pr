@@ -1,0 +1,127 @@
+#!/usr/bin/env -S deno run --allow-read --allow-write --allow-run
+
+import { extractYaml } from "jsr:@std/front-matter";
+
+interface PullRequestOptions {
+  title?: string;
+  branch?: string;
+  base?: string;
+  head?: string;
+  assignee?: string;
+  reviewer?: string;
+  label?: string;
+  draft?: boolean;
+}
+
+function help() {
+  console.log('Usage:')
+  console.log('create-pr <pull-request-template>');
+  console.log('');
+  console.log('Example:');
+  console.log('create-pr my-pr.md');
+  console.log('');
+  console.log('Pull Request Template example:');
+  console.log('---');
+  console.log('title: Add user authentication');
+  console.log('branch: feature/auth');
+  console.log('base: main');
+  console.log('reviewer: teammate1');
+  console.log('draft: false');
+  console.log('---');
+  console.log('## Description');
+  console.log('This PR adds user authentication...');
+}
+
+async function getDefaultBranch(): Promise<string> {
+  const cmd = new Deno.Command('gh', {
+    args: ['repo', 'view', '--json', 'defaultBranchRef'],
+    stdout: 'piped'
+  });
+  const result = await cmd.output();
+
+  if (result.success) {
+    const data = JSON.parse(new TextDecoder().decode(result.stdout));
+    return data.defaultBranchRef.name;
+  }
+
+  return 'main';
+}
+
+const prFile = Deno.args[0];
+if (!prFile) {
+  help();
+  Deno.exit(1);
+}
+
+const content = await Deno.readTextFile(prFile);
+const { attrs, body } = extractYaml<PullRequestOptions>(content);
+
+if (!attrs.title) {
+  console.error('Template validation error: `title` is required in frontmatter');
+  Deno.exit(1);
+}
+
+if (!attrs.branch && !attrs.head) {
+  console.error('Template validation error: either `branch` or `head` is required in frontmatter');
+  Deno.exit(1);
+}
+
+let baseBranch = attrs.base;
+if (!baseBranch) {
+  baseBranch = await getDefaultBranch();
+  console.log(`Using default base branch: ${baseBranch}`);
+}
+
+const branchToCheck = attrs.branch || attrs.head;
+if (branchToCheck) {
+  console.log(`Checking for existing PR on branch: ${branchToCheck}`);
+
+  const checkCmd = new Deno.Command('gh', {
+    args: ['pr', 'list', '--head', branchToCheck, '--json', 'url,title'],
+    stdout: 'piped',
+    stderr: 'piped'
+  });
+  const checkResult = await checkCmd.output();
+
+  if (checkResult.success) {
+    const prs = JSON.parse(new TextDecoder().decode(checkResult.stdout));
+    if (prs.length > 0) {
+      console.log('PR already exists for this branch:', prs[0].url);
+      Deno.exit(0);
+    }
+  }
+}
+
+const args = ['pr', 'create'];
+
+if (attrs.title) args.push('--title', attrs.title);
+if (baseBranch) args.push('--base', baseBranch);
+if (attrs.head) args.push('--head', attrs.head);
+if (attrs.assignee) args.push('--assignee', attrs.assignee);
+if (attrs.reviewer) args.push('--reviewer', attrs.reviewer);
+if (attrs.label) args.push('--label', attrs.label);
+if (attrs.draft === true) args.push('--draft');
+
+const tempFile = '/tmp/temp-pr-body.md';
+await Deno.writeTextFile(tempFile, body);
+args.push('--body-file', tempFile);
+
+const result = await new Deno.Command('gh', {
+  args: args,
+  stdout: 'piped',
+  stderr: 'piped'
+}).output();
+
+await Deno.remove(tempFile);
+
+if (!result.success) {
+  const stderr = new TextDecoder().decode(result.stderr);
+  if (stderr.trim()) {
+    console.error('Error:', stderr);
+  }
+
+  Deno.exit(1);
+}
+
+const output = new TextDecoder().decode(result.stdout);
+console.log('✅', output.trim());
