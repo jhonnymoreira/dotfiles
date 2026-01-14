@@ -11,7 +11,7 @@ ps = push
 st = status
 
 [core]
-editor = vim
+editor = nvim
 excludesfile = $HOME/.gitignore
 preloadindex = true
 
